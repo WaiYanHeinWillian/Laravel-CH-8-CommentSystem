@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -50,4 +51,17 @@ class BlogController extends Controller
 
 //         return Blog::latest()->filter()->get();
 //     }
+
+        public function subscriptionHandler(Blog $blog)
+        {
+            if(User::find(auth()->id())->isSubscribed($blog))
+            {
+                $blog->unSubscribe();
+            }else
+            {
+                $blog->subscribe();
+            }
+            return back();
+        }
+
 }

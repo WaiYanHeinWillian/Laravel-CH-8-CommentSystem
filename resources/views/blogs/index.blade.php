@@ -43,8 +43,7 @@
 
     
 
-    <!-- subscribe new blogs -->
-    <x-subscribe></x-subscribe>
+    {{-- <x-subscribe></x-subscribe> --}}
 
     <!-- footer -->
     
