@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
@@ -48,8 +49,17 @@ Route::post('/login', [AuthController::class,'post_login'])->middleware('guest')
 Route::post('/blogs/{blog:slug}/subscription',[BlogController::class,'subscriptionHandler']);
 
 
-//Admin Route
-Route::get('/admin/blogs/create',[BlogController::class,'create'])->middleware('admin');
-Route::post('/admin/blogs/store',[BlogController::class,'store'])->middleware('admin');
+//Admin Routes
+Route::middleware('can:admin')->group(function()
+{
+    Route::get('/admin/blogs',[AdminBlogController::class,'index']);
+    Route::get('/admin/blogs/create',[AdminBlogController::class,'create']);
+    Route::post('/admin/blogs/store',[AdminBlogController::class,'store']);
+    Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class,'destroy']);
+
+    Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit']);
+    Route::patch('/admin/blogs/{blog:slug}/update',[AdminBlogController::class,'update']);
+});
+
 
 

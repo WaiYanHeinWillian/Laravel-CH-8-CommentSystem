@@ -11,6 +11,10 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
+
+    <link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.css">
+
   </head>
   <body id="home">
 
@@ -22,5 +26,25 @@
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
     crossorigin="anonymous"
     ></script>
+
+    //ckeditor
+    <script type="importmap">
+      {
+        "imports": {
+          "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.js",
+          "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.1/"
+        }
+      }
+      </script>
+      <script type="module" src="/ckeditor/main.js"></script>
+      <!-- A friendly reminder to run on a server, remove this during the integration. -->
+      <script>
+        window.onload = function() {
+          if ( window.location.protocol === "file:" ) {
+            alert( "This sample requires an HTTP server. Please serve this file with a web server." );
+          }
+        };
+      </script>
+
 </body>
 </html>

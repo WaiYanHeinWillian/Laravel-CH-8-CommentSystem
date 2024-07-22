@@ -47,10 +47,17 @@ class AuthController extends Controller
             'password.min'=>'Password should be more than 8 characters.'
         ]);
         
+        //if user credentials correct -> redirect home
         if(auth()->attempt($formData))
         {
-            return redirect('/')->with('success','Welcome Back!');
+            if(auth()->user()->is_admin)
+            {
+                return redirect('/admin/blogs');
+            }else{
+                return redirect('/')->with('success','Welcome Back!');
+            }
         }else{
+            //if user credentials fail -> redirect back to form with error
             return redirect()->back()->withErrors([
                 'email'=>'User credentials wrong.'
             ]);

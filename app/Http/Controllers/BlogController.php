@@ -6,13 +6,14 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class BlogController extends Controller
 {
+    
     public function index() {
         // dd(request(['search']));
-        
         return view('blogs.index',[
             // 'blogs'=>Blog::with('category','author')->get() //eager load // lazy loading
 
@@ -65,32 +66,6 @@ class BlogController extends Controller
             return back();
         }
 
-        public function create()
-        {
-            
-            return view('blogs.create',[
-                'categories'=>Category::all()
-            ]);
-        }
-
-        public function store()
-        {
-            $path=
-
-            $formData=request()->validate([
-                "title" => ["required"],
-                "slug" => ["required",Rule::unique('blogs','slug')],
-                "intro" => ["required"],
-                "body" => ["required"],
-                "category_id" => ["required",Rule::exists('categories','id')]
-            ]);
-
-            $formData['user_id']=auth()->id();
-            $formData['thumbnail']=request()->file('thumbnail')->store('thumbnails');
-
-            Blog::create($formData);
-
-            return redirect('/');
-        }
+        
 
 }

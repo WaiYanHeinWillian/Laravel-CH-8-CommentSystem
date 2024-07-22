@@ -9,6 +9,11 @@
         @guest --}}
 
         @auth
+
+          @can ('admin')
+            <a href="/admin/blogs" class="nav-link">Dashboard</a>
+          @endcan
+
           <img src="{{ auth()->user()->avatar }}" width="50" height="50" class="rounded-circle" alt="">
 
           <a href="" class="nav-link">Welcome {{ auth()->user()->name }}</a>
